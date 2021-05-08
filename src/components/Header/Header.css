@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  justify-content: center;
+  border-bottom: 3px dashed white;
+  padding-bottom: 10px;
+}
+
+.header a {
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+}
+
+.header a::before {
+  content: '';
+  color: rgba(0, 0, 0, 0);
+  position: absolute;
+  bottom: -10px;
+  height: 50%;
+  width: 100%;
+  background-color: var(--theme-color_1);
+  opacity: 0;
+  transform: skew(-10deg);
+  z-index: -1;
+}
+
+.header a:hover::before {
+  bottom: 0px;
+  opacity: 0.5;
+  z-index: 0;
+  transition: 250ms ease-in;
+}
+
+.header a:hover {
+  text-decoration: none;
+}
+
+.header a + a {
+  margin: 0 20px;
+}

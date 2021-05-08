@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Route, Switch } from 'wouter';
+
+import { DataProvider } from 'context/DataContext';
+import Ranking from 'pages/Ranking';
+import Races from 'pages/Races';
+import Driver from 'pages/Driver';
+import Header from 'components/Header';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataProvider>
+      <div className="app">
+        <section className="app-content">
+          <Header />
+          <Switch>
+            <Route component={Ranking} path="/" />
+            <Route component={Races} path="/races" />
+            <Route component={Driver} path="/driver/:id" />
+          </Switch>
+        </section>
+      </div>
+    </DataProvider>
   );
 }
 
