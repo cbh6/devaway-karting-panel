@@ -6,7 +6,7 @@ import styles from './Ranking.module.scss';
 
 export default function RankingPage() {
   const { globalRanking, drivers } = useData();
-  console.table(globalRanking);
+
   return (
     <>
       <h2>Ranking</h2>
