@@ -1,23 +1,24 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import { useEffect } from 'react';
 import DRIVERS_DATA from './data';
+import { getTransformedData } from './utils';
 
-const Context = React.createContext({ data: [] });
+const initialStateContext = {
+  drivers: {},
+  rankingByRace: {},
+  globalRanking: {}
+};
+const Context = React.createContext(initialStateContext);
 
 function DataProvider({ children }) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(initialStateContext);
 
-  useEffect(() => setTimeout(() => setData(DRIVERS_DATA), 1000), []);
+  const transformedData = useMemo(() => getTransformedData(DRIVERS_DATA), []);
+  useEffect(() => setTimeout(() => setData(transformedData), 1000), [
+    transformedData
+  ]);
 
-  return (
-    <Context.Provider
-      value={{
-        data
-      }}
-    >
-      {children}
-    </Context.Provider>
-  );
+  return <Context.Provider value={data}>{children}</Context.Provider>;
 }
 
 function useData() {

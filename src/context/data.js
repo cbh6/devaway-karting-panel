@@ -1,4 +1,4 @@
-const DRIVER_DATA = [
+const DRIVERS_DATA = [
   {
     _id: '5f3a3c5faa55d5c4ea549ac1',
     picture: 'http://placehold.it/64x64',
@@ -1079,4 +1079,4 @@ const DRIVER_DATA = [
   }
 ];
 
-export default DRIVER_DATA;
+export default DRIVERS_DATA;

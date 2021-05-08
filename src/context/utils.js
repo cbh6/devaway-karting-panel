@@ -5,7 +5,7 @@ const RACE_POINTS = [25, 18, 15, 10, 8, 6, 5, 3, 2, 1];
  * @param {string} time
  * @returns milliseconds
  */
-export const timeStringToMS = (time) => {
+const timeStringToMS = (time) => {
   const [hours, minutes, secondsMs] = time.split(':');
   const [seconds, milliseconds] = secondsMs.split('.');
 
@@ -125,16 +125,25 @@ const getRankingByRace = (driversData) => {
  * }
  * Calculates won points by driverId for all the races
  * @param {*} rankingByRace
- * @returns Array of objects containing driverId and points. Sorted by points won
+ * @returns Array of objects containing driverId and { points, podiums, wins }. Sorted by points won
  */
 const getGlobalRankingByPoints = (rankingByRace) => {
   // Calculate how many points has each driver won. And set the info into an object
   const driversPoints = Object.values(rankingByRace).reduce((prev, next) => {
     next.forEach((driverId, index) => {
       if (prev[driverId]) {
-        prev[driverId] += RACE_POINTS[index] || 0;
+        prev[driverId] = {
+          points: (prev[driverId].points += RACE_POINTS[index] || 0),
+          podiums:
+            index <= 3 ? (prev[driverId].podiums += 1) : prev[driverId].podiums,
+          wins: index === 1 ? (prev[driverId].wins += 1) : prev[driverId].wins
+        };
       } else {
-        prev[driverId] = RACE_POINTS[index] || 0;
+        prev[driverId] = {
+          points: RACE_POINTS[index] || 0,
+          podiums: index <= 3 ? 1 : 0,
+          wins: index === 1 ? 1 : 0
+        };
       }
     });
     return prev;
@@ -143,19 +152,23 @@ const getGlobalRankingByPoints = (rankingByRace) => {
   // Transform the last object into an array in order to allow us sorting
   const driversPointsArray = Object.keys(driversPoints).map((driverId) => ({
     driverId,
-    points: driversPoints[driverId]
+    rankingData: driversPoints[driverId]
   }));
 
-  return driversPointsArray.sort((a, b) => b.points - a.points);
+  return driversPointsArray.sort(
+    (a, b) => b.rankingData.points - a.rankingData.points
+  );
 };
 
-export const getRanking = (driversData) => {
-  const transformedData = transformDriversData(driversData);
-  console.table(transformedData);
+export const getTransformedData = (driversData) => {
+  const drivers = transformDriversData(driversData);
+  // console.table(drivers);
 
   const rankingByRace = getRankingByRace(driversData);
-  console.log(rankingByRace);
+  // console.log(rankingByRace);
 
   const globalRanking = getGlobalRankingByPoints(rankingByRace);
-  console.log(globalRanking);
+  // console.log(globalRanking);
+
+  return { drivers, rankingByRace, globalRanking };
 };
