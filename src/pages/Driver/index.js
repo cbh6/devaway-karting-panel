@@ -33,17 +33,17 @@ export default function DriverPage({ params }) {
             </div>
 
             <div className={styles.info__ranking}>
-              <h4>Global Ranking position</h4>
-              <p className={styles['high-label']}>{rankingData.position}</p>
+              <p className={styles.title}>Global Ranking position</p>
+              <p className={styles.position}>{rankingData.position}</p>
               <hr />
-              <p className={styles['mid-label']}>
-                Points: <span>{rankingData.points}</span>
+              <p>
+                Points: <strong>{rankingData.points}</strong>
               </p>
-              <p className={styles['mid-label']}>
-                Wins: <span>{rankingData.wins}</span>
+              <p>
+                Wins: <strong>{rankingData.wins}</strong>
               </p>
-              <p className={styles['mid-label']}>
-                Podiums: <span>{rankingData.podiums}</span>
+              <p>
+                Podiums: <strong>{rankingData.podiums}</strong>
               </p>
             </div>
           </section>
@@ -57,8 +57,12 @@ export default function DriverPage({ params }) {
               return (
                 <div className={styles.races__race} key={raceName}>
                   <span>{raceName}</span>
-                  <span>pos: {position}</span>
-                  <span>time: {time}</span>
+                  <span>
+                    Pos: <strong>{position}</strong>
+                  </span>
+                  <span>
+                    Time: <strong>{time}</strong>
+                  </span>
                 </div>
               );
             })}

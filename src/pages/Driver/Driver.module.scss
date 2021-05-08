@@ -3,10 +3,8 @@
   margin-top: 50px;
 }
 
-.container {
-  h2 {
-    text-align: center;
-  }
+h2 {
+  text-align: center;
 }
 
 h3 {
@@ -24,18 +22,30 @@ h4 {
   font-size: 18px;
   color: var(--theme-color_3);
 
-  hr {
-    color: var(--theme-color_3);
+  &__driver {
+    img {
+      margin-top: 16px;
+    }
   }
-  div {
-    width: 20%;
+  &__ranking {
+    hr {
+      color: var(--theme-color_3);
+    }
+    .title {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+    .position {
+      font-size: 56px;
+      font-weight: 800;
+      margin: 10px 0;
+    }
+  }
+  &__driver,
+  &__ranking {
+    width: 32%;
     text-align: center;
   }
-}
-
-.high-label {
-  font-size: 32px;
-  font-weight: 800;
 }
 
 .races {
