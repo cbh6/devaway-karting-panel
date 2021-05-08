@@ -2,13 +2,42 @@ import React from 'react';
 import { useData } from 'context/DataContext';
 import Spinner from 'components/Spinner';
 
-export default function RankingPage() {
-  const { data } = useData();
+import styles from './Ranking.module.scss';
 
+export default function RankingPage() {
+  const { globalRanking, drivers } = useData();
+  console.table(globalRanking);
   return (
     <>
       <h2>Ranking</h2>
-      {data.length ? data.map((driver) => <p>{driver.name}</p>) : <Spinner />}
+      {globalRanking.length ? (
+        <div className={styles.ranking}>
+          <div
+            className={`${styles['ranking-row']} ${styles['ranking-row--header']} `}
+          >
+            <div>POS</div>
+            <div>DRIVER</div>
+            <div>TEAM</div>
+            <div>PTS</div>
+            <div>PODIUMS</div>
+            <div>WINS</div>
+          </div>
+          {globalRanking.map(({ driverId, rankingData }, index) => (
+            <div className={styles['ranking-row']}>
+              <div>{index + 1}</div>
+              <div>
+                <strong>{drivers[driverId].name}</strong>
+              </div>
+              <div>{drivers[driverId].team}</div>
+              <div>{rankingData.points}</div>
+              <div>{rankingData.podiums}</div>
+              <div>{rankingData.wins}</div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 }
