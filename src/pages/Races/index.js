@@ -6,7 +6,6 @@ import styles from './Races.module.scss';
 
 export default function RacesPage() {
   const { rankingByRace, drivers } = useData();
-  console.log(rankingByRace);
 
   return (
     <>
@@ -15,8 +14,8 @@ export default function RacesPage() {
         <section className={styles.races}>
           {Object.keys(rankingByRace).map((race) => (
             <article className={styles.race} key={race}>
-              <div className={styles['race__title']}>{race}</div>
-              <div className={styles['race__podium']}>
+              <div className={styles.race__title}>{race}</div>
+              <div className={styles.race__podium}>
                 <div className={styles['race__podium--second']}>
                   {drivers[rankingByRace[race][1]].name} <span>2</span>
                 </div>

@@ -1,0 +1,68 @@
+.error {
+  text-align: center;
+  margin-top: 50px;
+}
+
+// .container {
+//     display: flex;
+//     justify-content: space-between;
+// }
+
+.info {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  font-size: 18px;
+  color: var(--theme-color_3);
+
+  hr {
+    color: var(--theme-color_3);
+  }
+  div {
+    width: 20%;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 32px;
+  }
+
+  h4 {
+    font-size: 24px;
+  }
+}
+
+.high-label {
+  font-size: 32px;
+}
+
+.races {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70vw;
+  justify-content: center;
+  margin: 0 auto;
+
+  &__race {
+    padding: 24px;
+    margin: 32px;
+    border-radius: 8px;
+    background: var(--theme-color_3);
+    font-size: 26px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    span {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (min-width: 1921px) {
+  .races__race {
+    padding: 24px;
+    margin: 32px;
+    font-size: 24px;
+  }
+}

@@ -25,6 +25,7 @@
 
   &__podium {
     display: flex;
+    color: var(--theme-color_3);
 
     div {
       width: 150px;
@@ -39,7 +40,6 @@
     span {
       font-size: 32px;
       font-weight: 800;
-      color: var(--theme-color_3);
     }
 
     &--first {
