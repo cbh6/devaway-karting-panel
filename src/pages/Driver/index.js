@@ -48,6 +48,7 @@ export default function DriverPage({ params }) {
             </div>
           </section>
 
+          <h2>Races</h2>
           <section className={styles.races}>
             {Object.keys(rankingByRace).map((raceName) => {
               const position = rankingByRace[raceName].findIndex((e) => e === params.id);
