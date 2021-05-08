@@ -38,6 +38,16 @@
     border-radius: 0px;
   }
 
+  &--first {
+    background-color: var(--theme-color_first) !important;
+  }
+  &--second {
+    background-color: var(--theme-color_second) !important;
+  }
+  &--third {
+    background-color: var(--theme-color_third) !important;
+  }
+
   div {
     text-align: left;
     width: 100%;

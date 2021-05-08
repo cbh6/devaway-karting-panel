@@ -7,6 +7,13 @@ import styles from './Ranking.module.scss';
 export default function RankingPage() {
   const { globalRanking, drivers } = useData();
 
+  const getPodiumClass = (position) => {
+    if (position === 1) return styles['ranking-row--first'];
+    if (position === 2) return styles['ranking-row--second'];
+    if (position === 3) return styles['ranking-row--third'];
+    return;
+  };
+
   return (
     <>
       <h2>Ranking</h2>
@@ -23,7 +30,12 @@ export default function RankingPage() {
             <div>WINS</div>
           </div>
           {globalRanking.map(({ driverId, rankingData }, index) => (
-            <div className={styles['ranking-row']}>
+            <div
+              className={`${styles['ranking-row']} ${getPodiumClass(
+                index + 1
+              )}`}
+              key={driverId}
+            >
               <div>{index + 1}</div>
               <div>
                 <strong>{drivers[driverId].name}</strong>

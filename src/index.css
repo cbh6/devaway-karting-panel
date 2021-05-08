@@ -9,6 +9,9 @@
   --theme-color_1: #2ec4b6;
   --theme-color_2: #ff9f1c;
   --theme-color_3: #011627;
+  --theme-color_first: rgba(255, 217, 0, 0.582);
+  --theme-color_second: rgba(165, 165, 165, 0.644);
+  --theme-color_third: #e97223a1;
 }
 
 html {
