@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## What?:
 
-- I have done this small project as a technical test for (Devaway)[https://devaway.io/] company
+- I have done this small project as a technical test for [Devaway](https://devaway.io/) company
 - The test is about implementing a front-end application to display the Karting World Championship
 - A JSON is provided and I had to structure the data in order to display the global ranking, races info and driver details
 - A TV Mode is also available on the application, where we can see all the pages in rotation.
