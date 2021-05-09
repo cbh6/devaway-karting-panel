@@ -5,7 +5,7 @@ import styles from './Footer.module.scss';
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      Done with ❤️ by{' '}
+      Made with ❤️ by{' '}
       <a href="https://github.com/cbh6" target="_blank" rel="noreferrer">
         <i>Cristian Botella Hurtado</i>
       </a>
