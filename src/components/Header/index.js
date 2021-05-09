@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'wouter';
 import { useData } from 'context/DataContext';
 
-import './Header.css';
+import './Header.scss';
 
 export default function Header() {
   const { isTVMode } = useData();

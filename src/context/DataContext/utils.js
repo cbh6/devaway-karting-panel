@@ -8,7 +8,9 @@ const RACE_POINTS = [25, 18, 15, 10, 8, 6, 5, 3, 2, 1];
 export const timeStringToMS = (time) => {
   if (!time) return;
   const [hours, minutes, secondsMs] = time.split(':');
+  if (!hours || !minutes || !secondsMs) return;
   const [seconds, milliseconds] = secondsMs.split('.');
+  if (!seconds || !milliseconds) return;
 
   const hoursMS = parseInt(hours) * 60 * 60 * 1000;
   const minutesMS = parseInt(minutes) * 60 * 1000;
@@ -39,7 +41,9 @@ export const timeStringToMS = (time) => {
     }
  * }
  */
-const transformDriversData = (driversData) => {
+export const transformDriversData = (driversData) => {
+  if (!driversData) return;
+
   // Transform drivers array to a dictionary with each driver._id as keys
   // as values we have the same data, but races array will be another dictionary
   return driversData.reduce((prev, next) => {
@@ -77,7 +81,9 @@ const transformDriversData = (driversData) => {
  *  ...,
  * }
  */
-const getRankingByRace = (driversData) => {
+export const getRankingByRace = (driversData) => {
+  if (!driversData) return;
+
   // From driversData -> Get dictionary { raceName: [ {driverId: _id, timeinMS }, ...], ...}
   // This allow us to sort times by race
   const racesDictionary = driversData.reduce((prev, next) => {
@@ -128,7 +134,8 @@ const getRankingByRace = (driversData) => {
  * @param {*} rankingByRace
  * @returns Array of objects containing driverId and { points, podiums, wins }. Sorted by points won
  */
-const getGlobalRankingByPoints = (rankingByRace) => {
+export const getGlobalRankingByPoints = (rankingByRace) => {
+  if (!rankingByRace) return;
   // Calculate how many points has each driver won. And set the info into an object
   const driversPoints = Object.values(rankingByRace).reduce((prev, next) => {
     next.forEach((driverId, index) => {
