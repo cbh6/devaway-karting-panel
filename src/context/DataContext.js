@@ -6,19 +6,19 @@ import { getTransformedData } from './utils';
 const initialStateContext = {
   drivers: {},
   rankingByRace: {},
-  globalRanking: {}
+  globalRanking: {},
+  isTVMode: false
 };
 const Context = React.createContext(initialStateContext);
 
 function DataProvider({ children }) {
   const [data, setData] = useState(initialStateContext);
+  const [isTVMode, setIsTVMode] = useState(false);
 
   const transformedData = useMemo(() => getTransformedData(DRIVERS_DATA), []);
-  useEffect(() => setTimeout(() => setData(transformedData), 1000), [
-    transformedData
-  ]);
+  useEffect(() => setTimeout(() => setData(transformedData), 1000), [transformedData]);
 
-  return <Context.Provider value={data}>{children}</Context.Provider>;
+  return <Context.Provider value={{ ...data, isTVMode, setIsTVMode }}>{children}</Context.Provider>;
 }
 
 function useData() {

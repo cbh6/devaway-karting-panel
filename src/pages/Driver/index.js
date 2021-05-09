@@ -4,19 +4,21 @@ import Spinner from 'components/Spinner';
 
 import styles from './Driver.module.scss';
 
-export default function DriverPage({ params }) {
+export default function DriverPage({ params, driverId }) {
   const { rankingByRace, drivers, globalRanking } = useData();
 
-  const driverData = drivers[params.id];
+  const id = driverId || params.id;
+  const driverData = drivers[id];
+
+  // Get ranking data from globalRanking object
   const rankingData = useMemo(() => {
     if (!Object.keys(globalRanking).length) return {};
-    const index = globalRanking.findIndex((e) => e.driverId === params.id);
-    console.log(globalRanking[index]);
+    const index = globalRanking.findIndex((e) => e.driverId === id);
     return { position: index + 1, ...globalRanking[index].rankingData };
-  }, [globalRanking, params.id]);
+  }, [globalRanking, id]);
 
   if (Object.values(drivers).length && !driverData) {
-    return <p className={styles.error}>No driver found with id {params.id}</p>;
+    return <p className={styles.error}>No driver found with id {id}</p>;
   }
 
   return (
@@ -51,7 +53,7 @@ export default function DriverPage({ params }) {
           <h2>Races</h2>
           <section className={styles.races}>
             {Object.keys(rankingByRace).map((raceName) => {
-              const position = rankingByRace[raceName].findIndex((e) => e === params.id);
+              const position = rankingByRace[raceName].findIndex((e) => e === id);
               const time = driverData.races[raceName].time;
 
               return (
