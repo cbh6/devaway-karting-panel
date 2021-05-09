@@ -1,0 +1,18 @@
+.footer {
+  margin: 10px;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  a {
+    transition: color 0.15s;
+    font-size: 12px;
+    &:hover {
+      color: var(--theme-color_3);
+    }
+  }
+}

@@ -6,7 +6,7 @@ import Spinner from 'components/Spinner';
 
 import { useData } from 'context/DataContext';
 
-// import styles from './Tv.module.scss';
+import styles from './Tv.module.scss';
 
 const TRANSITION_INTERVAL = 3000;
 const TRANSITION_PAGES = [
@@ -46,6 +46,7 @@ const TRANSITION_PAGES = [
 ];
 
 export default function TvPage() {
+  const [wrapperClass, setWrapperClass] = useState('');
   const { isTVMode, setIsTVMode } = useData();
 
   useEffect(() => {
@@ -74,12 +75,16 @@ export default function TvPage() {
       const nextPage = getPageComponent(TRANSITION_PAGES[nextPageIndex]);
       currentPageIndex.current = nextPageIndex;
 
-      setCurrentPage(nextPage);
+      setWrapperClass(styles['fade-out']);
+      setTimeout(() => {
+        setWrapperClass(styles['fade-in']);
+        setCurrentPage(nextPage);
+      }, 500);
     }, TRANSITION_INTERVAL);
 
     return () => {
       clearInterval(intervalId);
     };
   });
-  return currentPage || <Spinner />;
+  return <div className={wrapperClass}>{currentPage}</div> || <Spinner />;
 }

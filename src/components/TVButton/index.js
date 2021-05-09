@@ -24,7 +24,7 @@ export default function TVButton() {
     <div className={styles.button}>
       {isTVMode ? (
         <div className={styles.disable} onClick={disableTVMode}>
-          Salir del modo TV
+          Exit TV Mode
         </div>
       ) : (
         <div className={styles.enable} onClick={isTVMode ? disableTVMode : enableTVMode}>
