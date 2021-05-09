@@ -28,7 +28,7 @@ export default function TVButton() {
         </div>
       ) : (
         <div className={styles.enable} onClick={isTVMode ? disableTVMode : enableTVMode}>
-          <img src={icon} alt="Logo" />
+          <img className={styles.enable__img} src={icon} alt="Logo" />
         </div>
       )}
     </div>
