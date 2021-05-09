@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![imagen](https://user-images.githubusercontent.com/7105710/117588794-18ed2380-b126-11eb-84d9-93894c054646.png)
+
+
 ## What?:
 
 - I have done this small project as a technical test for [Devaway](https://devaway.io/) company
