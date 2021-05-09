@@ -5,7 +5,8 @@ const RACE_POINTS = [25, 18, 15, 10, 8, 6, 5, 3, 2, 1];
  * @param {string} time
  * @returns milliseconds
  */
-const timeStringToMS = (time) => {
+export const timeStringToMS = (time) => {
+  if (!time) return;
   const [hours, minutes, secondsMs] = time.split(':');
   const [seconds, milliseconds] = secondsMs.split('.');
 
@@ -134,8 +135,7 @@ const getGlobalRankingByPoints = (rankingByRace) => {
       if (prev[driverId]) {
         prev[driverId] = {
           points: (prev[driverId].points += RACE_POINTS[index] || 0),
-          podiums:
-            index <= 3 ? (prev[driverId].podiums += 1) : prev[driverId].podiums,
+          podiums: index <= 3 ? (prev[driverId].podiums += 1) : prev[driverId].podiums,
           wins: index === 1 ? (prev[driverId].wins += 1) : prev[driverId].wins
         };
       } else {
@@ -155,20 +155,13 @@ const getGlobalRankingByPoints = (rankingByRace) => {
     rankingData: driversPoints[driverId]
   }));
 
-  return driversPointsArray.sort(
-    (a, b) => b.rankingData.points - a.rankingData.points
-  );
+  return driversPointsArray.sort((a, b) => b.rankingData.points - a.rankingData.points);
 };
 
 export const getTransformedData = (driversData) => {
   const drivers = transformDriversData(driversData);
-  // console.table(drivers);
-
   const rankingByRace = getRankingByRace(driversData);
-  // console.log(rankingByRace);
-
   const globalRanking = getGlobalRankingByPoints(rankingByRace);
-  // console.log(globalRanking);
 
   return { drivers, rankingByRace, globalRanking };
 };

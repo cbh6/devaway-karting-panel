@@ -9,8 +9,6 @@ export default function TVButton() {
   const { isTVMode, setIsTVMode } = useData();
   const [, setLocation] = useLocation();
 
-  console.log(isTVMode);
-
   const enableTVMode = useCallback(() => {
     setIsTVMode(true);
     setLocation('/tv');
