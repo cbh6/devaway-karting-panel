@@ -143,13 +143,13 @@ export const getGlobalRankingByPoints = (rankingByRace) => {
         prev[driverId] = {
           points: (prev[driverId].points += RACE_POINTS[index] || 0),
           podiums: index <= 3 ? (prev[driverId].podiums += 1) : prev[driverId].podiums,
-          wins: index === 1 ? (prev[driverId].wins += 1) : prev[driverId].wins
+          wins: index === 0 ? (prev[driverId].wins += 1) : prev[driverId].wins
         };
       } else {
         prev[driverId] = {
           points: RACE_POINTS[index] || 0,
           podiums: index <= 3 ? 1 : 0,
-          wins: index === 1 ? 1 : 0
+          wins: index === 0 ? 1 : 0
         };
       }
     });
